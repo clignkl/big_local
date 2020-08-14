@@ -1,0 +1,75 @@
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+spring:
+  jpa:
+    show-sql: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  profiles:
+    active: prod
+
+--- #Production
+
+spring:
+  profiles: prod
+logging:
+  level:
+    root: info
+configserver:
+  testVal: sise_api3 prod
+trans:
+  kinds:
+    sisebase:
+      availability: N
+      pid: BIG_SISE
+      cron: 0 22 1 1/1 * ?
+servlet:
+  multipart:
+    enabled: true
+    file-size-threshold: 2KB
+    max-file-size: 200MB
+    max-request-size: 215MB
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+file:
+  #upload-dir: ./src/main/resources/uploads
+  upload-dir: Z:\\HANAFILE\\upload
+  image-url: /upload/
+custom:
+  session-timeout: 60000 #Seesion Time out seconds. 60000 -> 10 hours.
+  allowed-origins:
+    - http://localhost:8080
+    - http://localhost:8081
+    - http://1.214.48.100
+    - http://58.225.57.29:8210
+  develop : true
+carmanager-aes:
+  key: f4150d4a1ac5708c29e437749045a39a
+  iv: 86afc43868fea6abd40fbf6d5ed50905
+external:
+  carhistory:
+    url: http://www.carhistory.or.kr:8810/dataTrans/carhistoryAPI3.car
+    char-set: UTF-8
+    r-Type: J #X(xml),J(jason),W(web),디폴트(X)
+    join-code : HANAFN
+    member-id: hacacap_v4 #제휴사코드
+    enc-key: fd5bcaa50a3d3dc557fa8eaaf0ad9608
+  #  virtual:
+  #    url: https://www.korea-ssl.com/
+  #    system-id: hanafn0114
+  #    num_prefix: "05070295"
+  email:
+    template-path: email/
+  onebumapping:
+    url: http://58.225.57.21:8020/ext/carmodelinfo
+  extapi:
+    url: http://58.225.57.11:8020/ext/carhistory
+  reldaemon:
+    url: http://10.10.183.23:9090/agent/crwl
