@@ -22,6 +22,8 @@ spring:
 logging:
   level:
     root: debug
+configserver:
+  testVal: sise_api dev
 trans:
   kinds:
     sisebase:
@@ -80,6 +82,8 @@ spring:
 logging:
   level:
     root: info
+configserver:
+  testVal: sise_api prod
 trans:
   kinds:
     sisebase:
