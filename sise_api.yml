@@ -23,7 +23,7 @@ logging:
   level:
     root: debug
 configserver:
-  testVal: sise_api dev
+  testVal: sise_api dev mod
 trans:
   kinds:
     sisebase:
